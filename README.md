@@ -40,6 +40,10 @@ I used the standard layered approach, consisting of:
 Conceptual diagram describing preliminary structure and cardinality:
 ![Conceptual-Model](/diagrams/01_Conceptual_Diagram.png)
 
+<img src="/diagrams/01_Conceptual_Diagram.png" width="300" alt="Conceptual-Model" />
+
+
+
 Physical model diagram created using reverse-engineer method:
 ![Physical_Diagram](/diagrams/03_Physical_Diagram.png)
 
@@ -92,11 +96,12 @@ This table is a short guide to high-volume sellers who regularly price below Man
 ---
 
 ### What this project demonstrates:
-Relational modeling
-Working with ~500k rows
-PK/FK design
-Constraints & integrity
-Analytical SQL
+- Relational modeling
+- Working with ~500k rows
+- Data Cleaning with SQL
+- PK/FK design
+- Constraints & integrity
+- Analytical SQL
 
 ---
 

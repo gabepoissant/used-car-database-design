@@ -36,16 +36,11 @@ I used the standard layered approach, consisting of:
 - **Physical Model** (DDL)
 - **Deployment** (Loading and transforming data)
 
-
 Conceptual diagram describing preliminary structure and cardinality:
-![Conceptual-Model](/diagrams/01_Conceptual_Diagram.png)
-
-<img src="/diagrams/01_Conceptual_Diagram.png" width="300" alt="Conceptual-Model" />
-
-
+<img src="/diagrams/01_Conceptual_Diagram.png" width="800" alt="Conceptual-Model" />
 
 Physical model diagram created using reverse-engineer method:
-![Physical_Diagram](/diagrams/03_Physical_Diagram.png)
+<img src="/diagrams/03_Physical_Diagram.png" width="800" alt="Physical_Diagram" />
 
 SQL excerpt defining tables, primary keys and foreign keys:
 ```
@@ -82,7 +77,6 @@ LIMIT 10;
 
 Output:
 ![Query_Output](/img/Query_Output.png)
-
 
 This table is a short guide to high-volume sellers who regularly price below Manheim Market Report value, sorted by greatest savings.  
 

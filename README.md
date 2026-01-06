@@ -84,7 +84,6 @@ This table is a short guide to high-volume sellers who regularly price below Man
 
 ### What I’d do next: 
 - Dive deeper into integrity
-- Improve efficiency with indexes
 - Anticipate team usage (roles, backups, deployment)
 
 ---
@@ -110,7 +109,12 @@ This table is a short guide to high-volume sellers who regularly price below Man
 
 ### How to run locally:
 1. [Download dataset from Kaggle](https://www.kaggle.com/datasets/syedanwarafridi/vehicle-sales-data/data)
-2. 
+2. Connect to MySQL Server
+3. Run code in /sql, in the following order:
+   1. 01_Loading_and_Cleaning_Data.sql (be sure to define file path of dataset)
+   2. 02_DDL.sql
+   3. 03_DML.sql
+4. The database is ready to query. Use 04_Queries.sql for some examples.
 
 ---
 

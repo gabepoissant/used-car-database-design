@@ -37,10 +37,10 @@ I used the standard layered approach, consisting of:
 - **Deployment** (Loading and transforming data)
 
 Conceptual diagram describing preliminary structure and cardinality:
-<img src="/diagrams/01_Conceptual_Diagram.png" width="800" alt="Conceptual-Model" />
+<img src="/diagrams/01_Conceptual_Diagram.png" width="650" alt="Conceptual-Model" />
 
 Physical model diagram created using reverse-engineer method:
-<img src="/diagrams/03_Physical_Diagram.png" width="800" alt="Physical_Diagram" />
+<img src="/diagrams/03_Physical_Diagram.png" width="650" alt="Physical_Diagram" />
 
 SQL excerpt defining tables, primary keys and foreign keys:
 ```

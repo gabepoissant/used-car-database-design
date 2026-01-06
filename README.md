@@ -1,10 +1,9 @@
-**Goal:**  
-<!--  I wanted to make sure I understood the fundamentals of how data is deployed in production environments. I decided to take a raw dataset from an unprocessed `.csv` and bring it through all design phases into a working, queryable database. -->
+#### Goal:  
 To take a raw dataset and bring it through all design phases into a working, queryable database.
 
 ---
 
-**Data:**  
+#### Data:
 I found a dataset about used car sales in the U.S. between 2014 and 2015. The data gives information about the vehicle, and where and when it was sold.
 
 | Column | Description | Example Value |
@@ -31,7 +30,7 @@ This dataset was authored by [Syed Anwar](https://www.kaggle.com/syedanwarafridi
 
 ---
 
-**Approach:**  
+#### Approach:
 I used the standard layered approach, consisting of:
 - **Conceptual Design** (High Level ER Diagram)
 - **Logical Design** (Define tables, columns and keys)
@@ -42,7 +41,6 @@ I used the standard layered approach, consisting of:
 Conceptual diagram describing preliminary structure and cardinality:
 {: .text-center}
 ![Conceptual-Model](/assets/Conceptual_Diagram.png){: .align-center}
-<figcaption>This is the image caption.</figcaption>
 
 Physical model diagram created using reverse-engineer method:
 {: .text-center}
@@ -65,7 +63,7 @@ REFERENCES MAKE(Make_ID);
 
 ---
 
-**Results:**
+#### Results:
 
 After data input and configuration, I'm able to define queries:
 {: .text-center}

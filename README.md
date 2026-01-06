@@ -1,4 +1,4 @@
-#### Goal:  
+### Goal:  
 To take a raw dataset and bring it through all design phases into a working, queryable database.
 
 ---

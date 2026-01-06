@@ -38,10 +38,10 @@ I used the standard layered approach, consisting of:
 
 
 Conceptual diagram describing preliminary structure and cardinality:
-![Conceptual-Model](/diagrams/01_Conceptual_Diagram.png){: .align-center}
+![Conceptual-Model](/diagrams/01_Conceptual_Diagram.png)
 
 Physical model diagram created using reverse-engineer method:
-![Physical_Diagram](/diagrams/02_Physical_Diagram.png){: .align-center}
+![Physical_Diagram](/diagrams/03_Physical_Diagram.png)
 
 SQL excerpt defining tables, primary keys and foreign keys:
 ```
@@ -77,7 +77,7 @@ LIMIT 10;
 ```
 
 Output:
-![Query_Output](/img/Query_Output.png){: .align-center}
+![Query_Output](/img/Query_Output.png)
 
 
 This table is a short guide to high-volume sellers who regularly price below Manheim Market Report value, sorted by greatest savings.  

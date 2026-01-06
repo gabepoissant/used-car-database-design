@@ -100,11 +100,11 @@ This table is a short guide to high-volume sellers who regularly price below Man
 ---
 
 ### Repository structure: 
-- /data: contains a sample of the dataset used
+- /docs: detailed explanations of all steps taken in the database design
+- /sql: all SQL used in the database design
 - /diagrams: contains conceptual, logical and physical diagrams
-- **/docs:** detailed explanations of all steps taken in the database design
+- /data: contains a sample of the dataset used
 - /img: various screenshots
-- **/sql:** all SQL used in the database design
 
 ---
 

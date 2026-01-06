@@ -3,7 +3,7 @@ To take a raw dataset and bring it through all design phases into a working, que
 
 ---
 
-#### Data:
+### Data:
 I found a dataset about used car sales in the U.S. between 2014 and 2015. The data gives information about the vehicle, and where and when it was sold.
 
 | Column | Description | Example Value |
@@ -29,7 +29,7 @@ This dataset was authored by [Syed Anwar](https://www.kaggle.com/syedanwarafridi
 
 ---
 
-#### Approach:
+### Approach:
 I used the standard layered approach, consisting of:
 - **Conceptual Design** (High Level ER Diagram)
 - **Logical Design** (Define tables, columns and keys)
@@ -59,7 +59,7 @@ REFERENCES MAKE(Make_ID);
 
 ---
 
-#### Results:
+### Results:
 
 After data input and configuration, I'm able to define queries:
 ```
@@ -84,9 +84,41 @@ This table is a short guide to high-volume sellers who regularly price below Man
 
 ---
 
-**What I’d do next:**  
+### What I’d do next: 
 - Dive deeper into integrity
 - Improve efficiency with indexes
 - Anticipate team usage (roles, backups, deployment)
 
 ---
+
+### What this project demonstrates:
+Relational modeling
+Working with ~500k rows
+PK/FK design
+Constraints & integrity
+Analytical SQL
+
+---
+
+### Repository structure: 
+- /data: contains a sample of the dataset used
+- /diagrams: contains conceptual, logical and physical diagrams
+- **/docs:** detailed explanations of all steps taken in the database design
+- /img: various screenshots
+- **/sql:** all SQL used in the database design
+
+---
+
+### How to run locally:
+1. [Download dataset from Kaggle](https://www.kaggle.com/datasets/syedanwarafridi/vehicle-sales-data/data)
+2. 
+
+---
+
+### More Queries:
+-2–3 query examples with explanation
+
+---
+
+### Learn more:
+-link to all doc pages

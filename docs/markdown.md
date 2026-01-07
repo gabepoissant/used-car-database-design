@@ -37,15 +37,15 @@ First, I created a staging table which would receive the bulk data, defining the
 
 ```
 CREATE TABLE BULK_CAR_SALES (
-    year INT NOT NULL,
+    model_year INT NOT NULL,
     make VARCHAR(50),
     model VARCHAR(100),
-    trim VARCHAR(100),
+    trim_type VARCHAR(100),
     body VARCHAR(50),
     transmission VARCHAR(20),
     vin CHAR(17),
     state CHAR(2),
-    `condition` INT,
+    car_condition INT,
     odometer INT,
     color VARCHAR(30),
     interior VARCHAR(30),
@@ -86,8 +86,8 @@ Having established my entity structure and loaded my data, I was able to define 
 CREATE TABLE MODEL
 (Model_ID INT AUTO_INCREMENT,
 Model VARCHAR(50),
-Created_Date DATETIME DEFAULT NOW(),
-Modified_Date DATETIME DEFAULT NOW(),
+Created_Date DATETIME DEFAULT CURRENT_TIMESTAMP,
+Modified_Date DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 CONSTRAINT PK_MODEL PRIMARY KEY (Model_ID));
 ```
 
@@ -104,7 +104,7 @@ Odometer INT,
 MMR INT,
 Selling_Price INT,
 Sale_Date TIMESTAMP,
-Year_ID INT,
+Model_Year_ID INT,
 Make_ID INT, 
 Model_ID INT, 
 Trim_Type_ID INT,
@@ -114,8 +114,8 @@ State_ID INT,
 Color_ID INT, 
 Interior_Color_ID INT,
 Seller_ID INT NOT NULL,
-Created_Date DATETIME DEFAULT NOW(),
-Modified_Date DATETIME DEFAULT NOW(),
+Created_Date DATETIME DEFAULT CURRENT_TIMESTAMP,
+Modified_Date DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 CONSTRAINT PK_SALE PRIMARY KEY (Sale_ID));
 ```
 
@@ -148,24 +148,24 @@ I am happy to see the physical diagram matching my logical diagram.
 Now that each lookup table and their constraints were successfully created, I needed to do the following for each entity:
 1. Populate lookup tables with each distinct value from BULK_CAR_SALES
 ```
-INSERT INTO YEAR
-(`Year`)
-SELECT DISTINCT `year` FROM BULK_CAR_SALES ORDER BY year;
+INSERT INTO MODEL_YEAR
+(Model_Year)
+SELECT DISTINCT model_year FROM BULK_CAR_SALES ORDER BY model_year;
 ```
 2. Add foreign key column in BULK_CAR_SALES
 ```
 ALTER TABLE BULK_CAR_SALES
-ADD Year_ID INT;
+ADD Model_Year_ID INT;
 ```
 3. Create index to avoid long loading times
 ```
-CREATE INDEX idx_BULK_CAR_SALES_year ON BULK_CAR_SALES (year);
+CREATE INDEX idx_BULK_CAR_SALES_model_year ON BULK_CAR_SALES (model_year);
 ```
 4. Populate foreign key column in BULK_CAR_SALES with the corresponding foreign key value
 ```
-UPDATE BULK_CAR_SALES b, `YEAR` y
-SET b.Year_ID = y.Year_ID
-WHERE b.year = y.Year;
+UPDATE BULK_CAR_SALES b, MODEL_YEAR y
+SET b.Model_Year_ID = y.Model_Year_ID
+WHERE b.model_year = y.Model_Year;
 ```
 
 Because `COLOR` was serving both the Color_ID and Interior_ID columns, its insert statement looked slightly different:
@@ -181,10 +181,10 @@ But otherwise the same steps were followed.
 Next, I populated the CAR_SALE entity with appropriate values from BULK_CAR_SALES: 
 ```
 INSERT INTO CAR_SALE
-(VIN,Year_ID,Make_ID,Model_ID,Trim_Type_ID,Body_ID,Transmission_ID,Color_ID,
+(VIN,Model_Year_ID,Make_ID,Model_ID,Trim_Type_ID,Body_ID,Transmission_ID,Color_ID,
 Interior_Color_ID,Car_Condition,Odometer,MMR,Selling_Price,State_ID,Seller_ID,Sale_Date)
-SELECT vin,Year_ID,Make_ID,Model_ID,Trim_Type_ID,Body_ID,Transmission_ID,Color_ID,
-Interior_Color_ID,`condition`,Odometer,mmr,sellingprice,State_ID,Seller_ID,saledate
+SELECT vin,Model_Year_ID,Make_ID,Model_ID,Trim_Type_ID,Body_ID,Transmission_ID,Color_ID,
+Interior_Color_ID,car_condition,Odometer,mmr,sellingprice,State_ID,Seller_ID,saledate
 FROM BULK_CAR_SALES;
 ```
 Finally, I had completed the database design. Querying `CAR_SALE` gives an output like this:
@@ -200,15 +200,15 @@ Lastly, I created a view for convenience.
 CREATE VIEW vw_ALL
 as 
 SELECT 
-y.Year as `year`,
+y.Model_Year as model_year,
 m.Make as make,
 mo.Model as model,
-t.Trim_Type as trim,
+t.Trim_Type as trim_type,
 b.Body as body,
 tr.Transmission as transmission,
 cs.VIN as vin,
 s.State as state,
-cs.Car_Condition as `condition`,
+cs.Car_Condition as car_condition,
 cs.Odometer as odometer,
 c.Color as color,
 ic.Color as interior,
@@ -217,7 +217,7 @@ cs.MMR as mmr,
 cs.Selling_Price as sellingprice,
 cs.Sale_Date as saledate
 FROM CAR_SALE cs
-INNER JOIN `YEAR` y ON cs.Year_ID = y.Year_ID 
+INNER JOIN MODEL_YEAR y ON cs.Model_Year_ID = y.Model_Year_ID 
 INNER JOIN MAKE m on cs.Make_ID = m.Make_ID
 INNER JOIN MODEL mo ON cs.Model_ID = mo.Model_ID
 INNER JOIN TRIM_TYPE t ON cs.Trim_Type_ID = t.Trim_Type_ID
@@ -263,29 +263,3 @@ ORDER BY avg_discount_vs_mmr DESC
 LIMIT 10;
 ```
 <img src="/img/Query_Output.png" alt="Query_Output" />
-
-This shows the most popular color of car per year - using the year of the car, not the sale. If there's a tie, all are listed.
-```
-SELECT c.year, c.color, COUNT(*) AS color_count
-FROM vw_CARS AS c
-GROUP BY c.year, c.color
-HAVING color_count = (SELECT MAX(cnt) FROM 
-    (SELECT COUNT(*) AS cnt 
-    FROM vw_CARS c2 
-    WHERE c2.year = c.year 
-    GROUP BY c2.color) AS max);
-```
-<img src="/img/Query_Output_6.png" width="200" alt="Query_Output" />
-
-This shows the most popular make per year - using the year of the car, not the sale. If there's a tie, all are listed.
-```
-SELECT c.year, c.make, COUNT(*) AS make_count
-FROM vw_CARS AS c
-GROUP BY c.year, c.make
-HAVING make_count = (SELECT MAX(cnt) FROM 
-    (SELECT COUNT(*) AS cnt 
-    FROM vw_CARS c2 
-    WHERE c2.year = c.year 
-    GROUP BY c2.make) AS max);
-```
-<img src="/img/Query_Output_7.png" width="200" alt="Query_Output" />

@@ -68,7 +68,7 @@ SELECT
    ROUND(AVG(mmr - sellingprice),2) AS avg_discount_vs_mmr,
    ROUND(AVG(car_condition),2) AS average_condition,
    ROUND(AVG(odometer),2) AS average_odometer
-FROM vw_CARS
+FROM vw_ALL
 GROUP BY seller
 HAVING COUNT(*) > 100
 ORDER BY avg_discount_vs_mmr DESC

@@ -27,7 +27,7 @@ Next, I refined my structure, creating a new diagram with [draw.io](draw.io). Th
 
 ## Data Loading and Cleaning
 
-Now that I had considered the critical details of the database, it was time to being creating the database.
+Now that I had considered the critical details of the database, it was time to begin creating the database.
 
 To do this, I used MySQL Workbench. 
 
@@ -57,7 +57,7 @@ CREATE TABLE BULK_CAR_SALES (
 Using `LOAD DATA LOCAL INFILE`, I was able to load in the data from a `.csv` file on my machine.
 
 #### Data Cleaning
-Though there are no NULLs in the dataset, there are many empty strings and some fields only containing `—` across the various columns. Handling missing data is outside of the scope of this project, so I elected to delete ALL rows that had ANY column with a non-valid value. 
+Though there are no NULLs in the dataset, there are many empty strings and some fields only containing `—` across the various columns. Handling missing data is outside of the scope of this project, so I elected to delete ALL rows that had ANY column with an invalid value. 
 
 Using `DELETE`, I deleted all rows with any empty strings or `—` values. 
 
@@ -76,7 +76,7 @@ With this, I also changed the datatype of `saledate` from VARCHAR to TIMESTAMP
 
 ## Data Definition (DDL)
 
-Having established my entity structure and loaded my data, I was able to then define the entities in my database, using `CREATE TABLE`. For example:
+Having established my entity structure and loaded my data, I was able to define the entities in my database, using `CREATE TABLE`. For example:
 
 ```
 CREATE TABLE MODEL
@@ -129,7 +129,7 @@ The only deviation from my logical model at this stage is renaming TRIM to TRIM_
 
 ## Physical Diagram
 
-Using the reverse-engineer method within MySQL Workbench, I was able to produce a physical diagram based off of my DDL document:
+Using the reverse-engineer method within MySQL Workbench, I was able to produce a physical diagram based on my DDL document:
 <img src="/diagrams/03_Physical_Diagram.png" alt="Physical-Model" />
 
 I am happy to see the physical diagram matching my logical diagram. 
@@ -161,7 +161,7 @@ SET b.Year_ID = y.Year_ID
 WHERE b.year = y.Year;
 ```
 
-Because `COLOR` was serving both the Color_ID and Interior_ID columns, it's insert statement looked slightly different:
+Because `COLOR` was serving both the Color_ID and Interior_ID columns, its insert statement looked slightly different:
 ```
 INSERT INTO COLOR
 (Color)
@@ -171,7 +171,7 @@ SELECT DISTINCT interior FROM BULK_CAR_SALES;
 ```
 But otherwise the same steps were followed. 
 
-Next, I populated the CAR_SALE entity with appropriate values from BULK_CAR_SALES 
+Next, I populated the CAR_SALE entity with appropriate values from BULK_CAR_SALES: 
 ```
 INSERT INTO CAR_SALE
 (VIN,Year_ID,Make_ID,Model_ID,Trim_Type_ID,Body_ID,Transmission_ID,Color_ID,
@@ -232,7 +232,7 @@ I also created vw_CARS and vw_SELLER.
 
 ## Example Queries
 
-Shows the most popular makes of cars in the dataset
+Shows the most popular makes of cars in the dataset:
 ```
 SELECT make, COUNT(make) AS make_count
 FROM vw_ALL
@@ -241,7 +241,7 @@ ORDER BY make_count DESC;
 ```
 <img src="/img/Query_Output_5.png" width="200" alt="Query_Output" />
 
-This table is a short guide to high-volume sellers who regularly price below Manheim Market Report value, sorted by greatest savings
+This table is a short guide to high-volume sellers who regularly price below Manheim Market Report value, sorted by the greatest savings
 ```
 SELECT
    seller,

@@ -118,10 +118,8 @@ This table is a short guide to high-volume sellers who regularly price below Man
 
 ---
 
-### More Queries:
--2–3 query examples with explanation
-
----
-
 ### Learn more:
--link to all doc pages
+- [Design](/docs/01_Design.md)
+- [Implementation](/docs/02_Implementation.md)
+- [Analysis](/docs/03_Analysis.md)
+- Or, go straight to the [SQL code](/SQL)

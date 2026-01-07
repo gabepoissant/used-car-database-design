@@ -1,20 +1,3 @@
-
-SECTION 1: 
-Explain Conceptual Diagram
-  == Talk about Cardinalities ==
-Explain Logical Diagram
-  color joining tables
-Explain Data Loading
-  Talk about cleaning logic
-Explain DDL (Data Definition Language)
-  color joining tables
-Explain Physical Diagram
-
-Explain DML (Data Manipulation Language)
-Show Example Queries
-
-
-
 ## Conceptual Diagram
 
 I decided to begin the database design process by creating a conceptual diagram using [draw.io](draw.io) to map out the entities I needed to create. I understood that the purpose of creating entities outside of a primary entity is to reduce redundancy in the data, as well as making a robust system using normalization. So, I identified all columns in the dataset that contained repetitive information, mapped them out as their own entities, and replaced their column names in the primary entity with foreign key ID columns. 

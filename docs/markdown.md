@@ -205,7 +205,96 @@ Querying `MAKE` gives an output like this:
 
 <img src="/img/Query_Output_3.png" width="400" alt="Query_Output" />
 
+Lastly, I created a view for convenience and to help protect the entities from accidental edits:
+```
+CREATE VIEW vw_ALL
+as 
+SELECT 
+y.Year as `year`,
+m.Make as make,
+mo.Model as model,
+t.Trim_Type as trim,
+b.Body as body,
+tr.Transmission as transmission,
+cs.VIN as vin,
+s.State as state,
+cs.Car_Condition as `condition`,
+cs.Odometer as odometer,
+c.Color as color,
+ic.Color as interior,
+se.Seller as seller,
+cs.MMR as mmr,
+cs.Selling_Price as sellingprice,
+cs.Sale_Date as saledate
+FROM CAR_SALE cs
+INNER JOIN `YEAR` y ON cs.Year_ID = y.Year_ID 
+INNER JOIN MAKE m on cs.Make_ID = m.Make_ID
+INNER JOIN MODEL mo ON cs.Model_ID = mo.Model_ID
+INNER JOIN TRIM_TYPE t ON cs.Trim_Type_ID = t.Trim_Type_ID
+INNER JOIN BODY b on cs.Body_ID = b.Body_ID
+INNER JOIN TRANSMISSION tr ON cs.Transmission_ID = tr.Transmission_ID
+INNER JOIN STATE s ON cs.State_ID = s.State_ID
+INNER JOIN COLOR c ON cs.Color_ID = c.Color_ID
+INNER JOIN COLOR ic ON cs.Interior_Color_ID = ic.Color_ID
+INNER JOIN SELLER se ON cs.Seller_ID = se.Seller_ID;
+```
 
+Querying it returns something like this:
+<img src="/img/Query_Output_4.png" width="400" alt="Query_Output" />
 
+I also created vw_CARS and vw_SELLER.
 
+---
 
+## Example Queries
+
+Shows the most popular makes of cars in the dataset
+```
+SELECT make, COUNT(make) AS make_count
+FROM vw_ALL
+GROUP BY make
+ORDER BY make_count DESC;
+```
+<img src="/img/Query_Output_5.png" width="400" alt="Query_Output" />
+
+This table is a short guide to high-volume sellers who regularly price below Manheim Market Report value, sorted by greatest savings
+```
+SELECT
+   seller,
+   COUNT(*) AS cars_sold,
+   ROUND(AVG(mmr - sellingprice),2) AS avg_discount_vs_mmr,
+   ROUND(AVG(car_condition),2) AS average_condition,
+   ROUND(AVG(odometer),2) AS average_odometer
+FROM vw_CARS
+GROUP BY seller
+HAVING COUNT(*) > 100
+ORDER BY avg_discount_vs_mmr DESC
+LIMIT 10;
+```
+<img src="/img/Query_Output.png" alt="Query_Output" />
+
+This shows the most popular color of car per year - using the year of the car, not the sale. If there's a tie, all are listed.
+```
+SELECT c.year, c.color, COUNT(*) AS color_count
+FROM vw_CARS AS c
+GROUP BY c.year, c.color
+HAVING color_count = (SELECT MAX(cnt) FROM 
+    (SELECT COUNT(*) AS cnt 
+    FROM vw_CARS c2 
+    WHERE c2.year = c.year 
+    GROUP BY c2.color) AS max);
+```
+<img src="/img/Query_Output_6.png" alt="Query_Output" />
+
+This shows the most popular make per year - using the year of the car, not the sale. If there's a tie, all are listed.
+```
+SELECT c.year, c.make, COUNT(*) AS make_count
+FROM vw_CARS AS c
+GROUP BY c.year, c.make
+HAVING make_count = (SELECT MAX(cnt) FROM 
+    (SELECT COUNT(*) AS cnt 
+    FROM vw_CARS c2 
+    WHERE c2.year = c.year 
+    GROUP BY c2.make) AS max);
+```
+<img src="/img/Query_Output_7.png" alt="Query_Output" />

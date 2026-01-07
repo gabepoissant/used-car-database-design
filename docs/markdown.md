@@ -240,7 +240,8 @@ INNER JOIN SELLER se ON cs.Seller_ID = se.Seller_ID;
 ```
 
 Querying it returns something like this:
-<img src="/img/Query_Output_4.png" width="400" alt="Query_Output" />
+
+<img src="/img/Query_Output_4.png" alt="Query_Output" />
 
 I also created vw_CARS and vw_SELLER.
 
@@ -255,7 +256,7 @@ FROM vw_ALL
 GROUP BY make
 ORDER BY make_count DESC;
 ```
-<img src="/img/Query_Output_5.png" width="400" alt="Query_Output" />
+<img src="/img/Query_Output_5.png" width="200" alt="Query_Output" />
 
 This table is a short guide to high-volume sellers who regularly price below Manheim Market Report value, sorted by greatest savings
 ```
@@ -284,7 +285,7 @@ HAVING color_count = (SELECT MAX(cnt) FROM
     WHERE c2.year = c.year 
     GROUP BY c2.color) AS max);
 ```
-<img src="/img/Query_Output_6.png" alt="Query_Output" />
+<img src="/img/Query_Output_6.png" width="200" alt="Query_Output" />
 
 This shows the most popular make per year - using the year of the car, not the sale. If there's a tie, all are listed.
 ```
@@ -297,4 +298,4 @@ HAVING make_count = (SELECT MAX(cnt) FROM
     WHERE c2.year = c.year 
     GROUP BY c2.make) AS max);
 ```
-<img src="/img/Query_Output_7.png" alt="Query_Output" />
+<img src="/img/Query_Output_7.png" width="200" alt="Query_Output" />

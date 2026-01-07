@@ -110,7 +110,7 @@ This table is a short guide to high-volume sellers who regularly price below Man
 ### How to run locally:
 1. [Download dataset from Kaggle](https://www.kaggle.com/datasets/syedanwarafridi/vehicle-sales-data/data)
 2. Connect to MySQL Server
-3. Run code in /sql, in the following order:
+3. Run code in /SQL, in the following order:
    1. 01_Loading_and_Cleaning_Data.sql (be sure to define file path of dataset)
    2. 02_DDL.sql
    3. 03_DML.sql
@@ -119,7 +119,7 @@ This table is a short guide to high-volume sellers who regularly price below Man
 ---
 
 ### Learn more:
-- [Design](/docs/01_Design.md)
+- [Database Design](/docs/01_Design.md)
 - [Implementation](/docs/02_Implementation.md)
 - [Analysis](/docs/03_Analysis.md)
 - Or, go straight to the [SQL code](/SQL)

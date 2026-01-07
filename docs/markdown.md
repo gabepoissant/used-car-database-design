@@ -178,8 +178,27 @@ SET b.Year_ID = y.Year_ID
 WHERE b.year = y.Year;
 ```
 
+Because `COLOR` was serving both the Color_ID and Interior_ID columns, it's insert statement looked slightly different:
+```
+INSERT INTO COLOR
+(Color)
+SELECT DISTINCT color FROM BULK_CAR_SALES
+UNION 
+SELECT DISTINCT interior FROM BULK_CAR_SALES;
+```
+But otherwise the same steps were followed. 
 
-
+Next, I populated the CAR_SALE entity with appropriate values from BULK_CAR_SALES 
+```
+INSERT INTO CAR_SALE
+(VIN,Year_ID,Make_ID,Model_ID,Trim_Type_ID,Body_ID,Transmission_ID,Color_ID,
+Interior_Color_ID,Car_Condition,Odometer,MMR,Selling_Price,State_ID,Seller_ID,Sale_Date)
+SELECT vin,Year_ID,Make_ID,Model_ID,Trim_Type_ID,Body_ID,Transmission_ID,Color_ID,
+Interior_Color_ID,`condition`,Odometer,mmr,sellingprice,State_ID,Seller_ID,saledate
+FROM BULK_CAR_SALES;
+```
+Finally, I had completed the database design. Querying CAR_SALE gives an output like this:
+<img src="/img/Query_Output_2" alt="Query_Output" />
 
 
 

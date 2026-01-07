@@ -1,6 +1,8 @@
 ## Conceptual Diagram
 
-I decided to begin the database design process by creating a conceptual diagram using [draw.io](draw.io) to map out the entities I needed to create. I understood that the purpose of creating entities outside of a primary entity is to reduce redundancy in the data, as well as making a robust system using normalization. So, I identified all columns in the dataset that contained repetitive information, mapped them out as their own entities, and replaced their column names in the primary entity with foreign key ID columns. 
+I decided to begin the database design process by creating a conceptual diagram using [draw.io](draw.io) to map out the entities I needed to create. I understood that the purpose of creating entities outside of a primary entity is to reduce redundancy in the data, as well as making a robust system using normalization. 
+
+So, I identified all columns in the dataset that contained repetitive information and mapped them out as their own entities.
 
 <img src="/diagrams/01_Conceptual_Diagram.png" alt="Conceptual-Model" />
 
@@ -29,9 +31,9 @@ Next, I refined my structure, creating a new diagram with [draw.io](draw.io). Th
 
 Now that I had considered the critical details of the database, it was time to begin creating the database.
 
-To do this, I used MySQL Workbench. 
+I used a staging-to-warehouse pattern for this application. 
 
-First, I created a table which would receive the bulk data, defining the datatypes for each column.
+First, I created a staging table which would receive the bulk data, defining the datatypes for each column.
 
 ```
 CREATE TABLE BULK_CAR_SALES (
@@ -57,7 +59,9 @@ CREATE TABLE BULK_CAR_SALES (
 Using `LOAD DATA LOCAL INFILE`, I was able to load in the data from a `.csv` file on my machine.
 
 #### Data Cleaning
-Though there are no NULLs in the dataset, there are many empty strings and some fields only containing `—` across the various columns. Handling missing data is outside of the scope of this project, so I elected to delete ALL rows that had ANY column with an invalid value. 
+Though there are no NULLs in the dataset, there are many empty strings and some fields only containing `—` across the various columns. 
+
+Handling missing data is outside of the scope of this project, so I elected to delete ALL rows that had ANY column with an invalid value. In production, I would attempt to keep as many as possible using missing data strategies like imputation.
 
 Using `DELETE`, I deleted all rows with any empty strings or `—` values. 
 
@@ -89,7 +93,7 @@ CONSTRAINT PK_MODEL PRIMARY KEY (Model_ID));
 
 This query establishes a surrogate key called Model_ID as the primary key of the table, as well as the data types for Model, and the `Created_Date` and `Modified_Date` fields. 
 
-Here is the primary entity creation statement: 
+Here is the fact table creation statement: 
 
 ```
 CREATE TABLE CAR_SALE
@@ -188,7 +192,7 @@ Querying `MAKE` gives an output like this:
 
 <img src="/img/Query_Output_3.png" width="400" alt="Query_Output" />
 
-Lastly, I created a view for convenience and to help protect the entities from accidental edits:
+Lastly, I created a view for convenience.
 ```
 CREATE VIEW vw_ALL
 as 

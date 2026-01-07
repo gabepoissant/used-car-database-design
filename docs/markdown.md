@@ -6,7 +6,7 @@ I decided to begin the database design process by creating a conceptual diagram 
 
 Though not strictly necessary at this stage, I also decided to include cardinality as part of the logic for this diagram. 
 
-Each entity relates to the primary entity `car_sale` with a optional-many to manditory-one cardinality structure. 
+Each entity relates to the primary entity `car_sale` with an optional-many to mandatory-one cardinality structure. 
 
 ---
 
@@ -17,7 +17,7 @@ Next, I refined my structure, creating a new diagram with [draw.io](draw.io). Th
 - Each entity has been assigned its primary key
 - Each foreign key in `CAR_SALE` is established and assigned to its corresponding entity
 - Formatting norms have been established (capitalization)
-- Cardinality has been redefined as manditory-many to manditory-one
+- Cardinality has been redefined as mandatory-many to mandatory-one
 - Each entity is given a `Created_Date` and `Modified_Date` column to keep track of edits to each row
 - `color` and `interior` have been combined, as they share many values
 

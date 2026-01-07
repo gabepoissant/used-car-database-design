@@ -155,10 +155,28 @@ I am happy to see the physical diagram matching my logical diagram.
 
 ## Data Manipulation (DML)
 
-
-
-
-
+Now that each lookup table and their constraints were successfully created, I needed to do the following for each entity:
+1. Populate lookup tables with each distinct value from BULK_CAR_SALES
+```
+INSERT INTO YEAR
+(`Year`)
+SELECT DISTINCT `year` FROM BULK_CAR_SALES ORDER BY year;
+```
+2. Add foreign key column in BULK_CAR_SALES
+```
+ALTER TABLE BULK_CAR_SALES
+ADD Year_ID INT;
+```
+3. Create index to avoid long loading times
+```
+CREATE INDEX idx_BULK_CAR_SALES_year ON BULK_CAR_SALES (year);
+```
+4. Populate foreign key column in BULK_CAR_SALES with the corresponding foreign key value
+```
+UPDATE BULK_CAR_SALES b, `YEAR` y
+SET b.Year_ID = y.Year_ID
+WHERE b.year = y.Year;
+```
 
 
 

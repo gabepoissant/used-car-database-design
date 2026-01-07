@@ -197,11 +197,11 @@ SELECT vin,Year_ID,Make_ID,Model_ID,Trim_Type_ID,Body_ID,Transmission_ID,Color_I
 Interior_Color_ID,`condition`,Odometer,mmr,sellingprice,State_ID,Seller_ID,saledate
 FROM BULK_CAR_SALES;
 ```
-Finally, I had completed the database design. Querying CAR_SALE gives an output like this:
-<img src="/img/Query_Output_2" alt="Query_Output" />
+Finally, I had completed the database design. Querying `CAR_SALE` gives an output like this:
+<img src="/img/Query_Output_2.png" alt="Query_Output" />
 
-
-
+Querying `MAKE` gives an output like this:
+<img src="/img/Query_Output_3.png" alt="Query_Output" />
 
 
 

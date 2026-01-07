@@ -127,7 +127,10 @@ ADD CONSTRAINT FK_CAR_SALE_Model_ID FOREIGN KEY (Model_ID)
 REFERENCES MODEL(Model_ID);
 ```
 
-The only deviation from my logical model at this stage is renaming TRIM to TRIM_TYPE to avoid conflicts with the SQL command `trim`.
+The only deviations from my logical model at this stage is renaming the following to avoid SQL conflicts:
+- Year to Model_Year
+- Trim to Trim_Type
+- Condition to Car_Condition
 
 ---
 

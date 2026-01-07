@@ -198,10 +198,12 @@ Interior_Color_ID,`condition`,Odometer,mmr,sellingprice,State_ID,Seller_ID,saled
 FROM BULK_CAR_SALES;
 ```
 Finally, I had completed the database design. Querying `CAR_SALE` gives an output like this:
+
 <img src="/img/Query_Output_2.png" alt="Query_Output" />
 
 Querying `MAKE` gives an output like this:
-<img src="/img/Query_Output_3.png" alt="Query_Output" />
+
+<img src="/img/Query_Output_3.png" width="400" alt="Query_Output" />
 
 
 

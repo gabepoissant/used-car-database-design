@@ -65,7 +65,7 @@ AND c.color_count = m.max_count
 ORDER BY c.model_year;
 ```
 
-<img src="/img/Query_Output_4.png" width="300" alt="Query_Output" />
+<img src="/img/Query_Output_4.png" width="250" alt="Query_Output" />
 
 ---
 

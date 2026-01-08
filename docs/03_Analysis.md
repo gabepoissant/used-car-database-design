@@ -1,5 +1,7 @@
 ## Analysis
 
+---
+
 Shows the most popular makes of cars in the dataset.
 ```
 SELECT make, COUNT(make) AS make_count
@@ -10,15 +12,20 @@ ORDER BY make_count DESC;
 
 <img src="/img/Query_Output_1.png" width="200" alt="Query_Output" />
 
+---
+
 Shows the average selling price, average condition and average mileage by seller. Good for choosing a seller to buy from.
 ```
-SELECT seller, AVG(sellingprice) AS average_selling_price, AVG(car_condition) AS average_condition, AVG(odometer) AS average_odometer
+SELECT seller, AVG(sellingprice) AS average_selling_price,
+	AVG(car_condition) AS average_condition, AVG(odometer) AS average_odometer
 FROM vw_ALL 
 GROUP BY seller
 ORDER BY average_selling_price;
 ```
 
 <img src="/img/Query_Output_2.png" alt="Query_Output" />
+
+---
 
 This table is a short guide to high-volume sellers who regularly price below Manheim Market Report value, sorted by the greatest savings.
 ```
@@ -36,6 +43,8 @@ LIMIT 10;
 ```
 
 <img src="/img/Query_Output_3.png" width="450" alt="Query_Output" />
+
+---
 
 Shows the most popular car color by model year.
 ```
@@ -57,6 +66,8 @@ ORDER BY c.model_year;
 ```
 
 <img src="/img/Query_Output_4.png" alt="Query_Output" />
+
+---
 
 Shows the percentage of makes in the dataset vs. in the subset that were sold with odometer > 250,000.
 ```

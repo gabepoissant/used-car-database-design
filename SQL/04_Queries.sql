@@ -6,7 +6,8 @@ ORDER BY make_count DESC;
 
 -- Shows the average selling price, average condition and average mileage by seller. 
 -- Good for choosing a seller to buy from.
-SELECT seller, AVG(sellingprice) AS average_selling_price, AVG(car_condition) AS average_condition, AVG(odometer) AS average_odometer
+SELECT seller, ROUND(AVG(sellingprice),2) AS average_selling_price, 
+	ROUND(AVG(car_condition),2) AS average_condition, ROUND(AVG(odometer)) AS average_odometer
 FROM vw_ALL 
 GROUP BY seller
 ORDER BY average_selling_price;

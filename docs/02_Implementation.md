@@ -160,11 +160,11 @@ FROM BULK_CAR_SALES;
 ```
 Finally, I had completed the database design. Querying `CAR_SALE` gives an output like this:
 
-<img src="/img/Query_Output_2.png" alt="Query_Output" />
+<img src="/img/Query_Output_6.png" alt="Query_Output" />
 
 Querying `MAKE` gives an output like this:
 
-<img src="/img/Query_Output_3.png" width="400" alt="Query_Output" />
+<img src="/img/Query_Output_7.png" width="400" alt="Query_Output" />
 
 Lastly, I created a view for convenience.
 ```
@@ -202,6 +202,6 @@ INNER JOIN SELLER se ON cs.Seller_ID = se.Seller_ID;
 
 Querying it returns something like this:
 
-<img src="/img/Query_Output_4.png" alt="Query_Output" />
+<img src="/img/Query_Output_8.png" alt="Query_Output" />
 
 I also created vw_CARS and vw_SELLER.

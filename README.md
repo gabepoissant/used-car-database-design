@@ -76,7 +76,7 @@ LIMIT 10;
 ```
 
 Output:
-![Query_Output](/img/Query_Output.png)
+![Query_Output](/img/Query_Output_2.png)
 
 This table is a short guide to high-volume sellers who regularly price below Manheim Market Report value, sorted by greatest savings.  
 

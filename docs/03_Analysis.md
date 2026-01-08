@@ -23,7 +23,7 @@ GROUP BY seller
 ORDER BY average_selling_price;
 ```
 
-<img src="/img/Query_Output_2.png" alt="Query_Output" />
+<img src="/img/Query_Output_2.png" width="650" alt="Query_Output" />
 
 ---
 
@@ -42,7 +42,7 @@ ORDER BY avg_discount_vs_mmr DESC
 LIMIT 10;
 ```
 
-<img src="/img/Query_Output_3.png" width="450" alt="Query_Output" />
+<img src="/img/Query_Output_3.png" alt="Query_Output" />
 
 ---
 
@@ -65,7 +65,7 @@ AND c.color_count = m.max_count
 ORDER BY c.model_year;
 ```
 
-<img src="/img/Query_Output_4.png" alt="Query_Output" />
+<img src="/img/Query_Output_4.png" width="300" alt="Query_Output" />
 
 ---
 

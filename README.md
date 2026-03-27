@@ -1,11 +1,10 @@
 ![Query_Output](/img/Query_Output_3.png)
 
-### Goal:  
-To take a raw dataset and bring it through all design phases into a working, queryable database.
+## Overview
 
----
+**Goal:** To take a raw dataset and bring it through all design phases into a working, queryable database.
 
-### Data:
+**Data:** 
 I found a dataset about used car sales in the U.S. between 2014 and 2015. The data gives information about the vehicle, and where and when it was sold.
 
 | Column | Description | Example Value |
@@ -117,11 +116,3 @@ This table is a short guide to high-volume sellers who regularly price below Man
    2. 02_DDL.sql
    3. 03_DML.sql
 4. The database is ready to query. Use 04_Queries.sql for some examples.
-
----
-
-### Learn more:
-- [Database Design](/docs/01_Design.md)
-- [Implementation](/docs/02_Implementation.md)
-- [Analysis](/docs/03_Analysis.md)
-- Or, go straight to the [SQL code](/SQL)

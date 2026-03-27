@@ -1,7 +1,6 @@
 ![Query_Output](/img/Query_Output_3.png)
 
 ---
-<a href="https://example.com" class="button">Go to Example</a>
 
 ## Overview
 

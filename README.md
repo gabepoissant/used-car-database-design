@@ -1,3 +1,5 @@
+![Query_Output](/img/Query_Output_3.png)
+
 ### Goal:  
 To take a raw dataset and bring it through all design phases into a working, queryable database.
 

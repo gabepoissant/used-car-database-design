@@ -1,0 +1,8 @@
+# Force SQL files to be the primary detected language
+*.sql linguist-detectable
+*.sql linguist-documentation=false
+
+data/* linguist-documentation
+diagrams/* linguist-documentation
+docs/* linguist-documentation
+img/* linguist-documentation
